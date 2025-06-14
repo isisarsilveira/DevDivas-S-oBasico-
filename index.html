@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout do Jogo</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        /* Cores e padrões para o fundo quadriculado */
+        .grid-background {
+            background-color: #FFFACD;
+            /* Cor de fundo creme */
+            background-image:
+                /* Linhas finas horizontais */
+                linear-gradient(to right, #E0E0E0 1px, transparent 1px),
+                /* Linhas fortes horizontais */
+                linear-gradient(to right, #C0C0C0 1px, transparent 1px),
+                /* Linhas finas verticais */
+                linear-gradient(to bottom, #E0E0E0 1px, transparent 1px),
+                /* Linhas fortes verticais */
+                linear-gradient(to bottom, #C0C0C0 1px, transparent 1px);
+            background-size:
+                10px 10px,
+                /* Tamanho da célula para linhas finas */
+                50px 50px,
+                /* Tamanho da célula para linhas fortes */
+                10px 10px,
+                50px 50px;
+            /* Offset para garantir que as linhas comecem na borda */
+            background-position: -1px -1px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex min-h-screen">
+    <div class="flex w-full">
+        <!-- Sidebar -->
+        <aside class="w-64 md:w-80 bg-purple-700 p-6 flex flex-col justify-between shadow-lg rounded-r-xl">
+            <div>
+                <!-- Ícone do Menu Hamburguer -->
+                <div
+                    class="text-white text-3xl mb-8 cursor-pointer p-2 rounded-md hover:bg-purple-600 transition-colors">
+                    &#9776; <!-- Ícone de hambúrguer Unicode -->
+                </div>
+
+                <!-- Navegação Principal -->
+                <nav>
+                    <ul>
+                        <!-- Categoria "Sobre o jogo" -->
+                        <li class="mb-4">
+                            <div class="text-white font-bold text-lg flex items-center mb-2">
+                                <span class="text-yellow-400 text-xl mr-2">&#9733;</span> Sobre o jogo
+                            </div>
+                            <ul class="ml-6 text-sm">
+                                <li class="mb-1">
+                                    <a href="#" id="linkMotivacao"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Motivação</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#" id="linkComoJogar"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Como
+                                        Jogar</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#" id="linkRegras"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Regras</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Categoria "Personagens" -->
+                        <li class="mb-4">
+                            <div class="text-white font-bold text-lg flex items-center mb-2">
+                                <span class="text-yellow-400 text-xl mr-2">&#9733;</span> Personagens
+                            </div>
+                            <ul class="ml-6 text-sm">
+                                <li class="mb-1">
+                                    <a href="andressaojeda.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Andressa
+                                        Ojeda</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="hedylamar.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Hedy
+                                        Lamar</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Grace
+                                        Hooper</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Edith
+                                        Clarke</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Annie
+                                        Easley</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="#"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Jeroniza
+                                        Marchalewki</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Botões para Login/Cadastro -->
+            <div class="p-2">
+                <button id="showLoginBtn"
+                    class="w-full bg-white text-purple-700 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-100 mb-2 transition-all">
+                    Login
+                </button>
+                <button id="showRegisterBtn"
+                    class="w-full bg-white text-purple-700 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-100 transition-all">
+                    Cadastro
+                </button>
+            </div>
+
+            <!-- Logo UFPR (placeholder) -->
+            <div class="mt-auto p-2">
+                <img src="https://placehold.co/120x50/8A2BE2/FFFFFF?text=UFPR" alt="Logo UFPR"
+                    class="w-full h-auto rounded-md object-contain">
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal com o fundo quadriculado -->
+        <main class="flex-1 grid-background p-6 rounded-l-xl flex items-center justify-center relative">
+            <!-- Conteúdo do Jogo / Motivação (visível por padrão) -->
+            <div id="gameContent"
+                class="relative bg-purple-300 p-8 rounded-xl shadow-2xl max-w-2xl w-full text-purple-900 border-2 border-purple-400 overflow-y-auto max-h-[90vh] mx-auto">
+                <p class="mb-4">
+                    Foi uma noite memorável no Congresso das Mulheres Cientistas (CMC). Seis pesquisadoras
+                    notáveis, cujos trabalhos revolucionaram suas respectivas áreas, estavam prestes a receber o
+                    reconhecimento que lhes fora negado por décadas. O auditório estava repleto de jovens
+                    inspiradas, cientistas veteranas emocionadas e figuras proeminentes da academia, nem todas
+                    com intenções benéficas.
+                </p>
+                <p class="mb-4">
+                    O Incidente ocorreu durante os preparativos finais. Pôsteres estavam expostos, artigos
+                    revisados, discursos preparados… até que, minutos antes da abertura, o caos se instalou. Os
+                    arquivos foram invadidos. O pânico tomou conta do CMC. Não era meramente um roubo; era
+                    um golpe do SISTEMA, o adversário invisível que sempre agiu nos bastidores da ciência para
+                    invisibilizar mulheres. Desta vez, contudo, eles haviam excedido os limites. As seis cientistas,
+                    unidas pela primeira vez, sabiam que precisavam agir prontamente. Se não identificassem a
+                    vítima de plágio e a pesquisa subtraída, o congresso fracassaria, e o SISTEMA prevaleceria
+                    novamente. Vestígios foram encontrados em seus locais de trabalho, evidenciando a presença
+                    prévia do SISTEMA.
+                </p>
+                <p class="mb-4">
+                    Agora, incumbia às cientistas desvendar este crime. Não havia sangue nem armas, apenas
+                    palavras suprimidas, créditos usurpados e histórias silenciadas. Mas se conseguissem reunir as
+                    evidências e chegar ao centro do congresso a tempo, talvez pudessem quebrar o ciclo, pois
+                    desta vez, o SISTEMA cometera um erro: subestimou não apenas uma, mas todas elas.
+                    Faça suas anotações, junte todas as provas possíveis para saber qual foi a mulher que teve o
+                    trabalho roubado e qual é o trabalho! Mas atenção porque todos os outros jogadores e até
+                    mesmo o criminoso estão de olho em todos os seus movimentos. Após obter o número
+                    suficiente de provas faça a sua acusação!
+                </p>
+                <p class="mb-4">
+                    Abra o envelope confidencial e veja as 2 cartas. Elas irão provar se a sua acusação é verdadeira.
+                    Caso você esteja certo, parabéns você ganhou o jogo! Mas se for falso, você será eliminado do
+                    jogo!
+                </p>
+                <p class="text-center font-bold text-lg">Descubra a cada partida um novo trabalho!</p>
+            </div>
+
+            <!-- Tela de Dicas/Regras (Como Jogar / Regras Detalhadas) -->
+            <div id="gameTips"
+                class="relative bg-purple-300 p-8 pt-12 rounded-xl shadow-2xl max-w-3xl w-full text-purple-900 border-2 border-purple-400 overflow-y-auto max-h-[90vh] mx-auto hidden">
+                <!-- Botão de fechar (X) -->
+                <div
+                    class="absolute top-4 right-4 text-purple-700 text-3xl font-bold cursor-pointer rounded-full bg-white p-1 leading-none w-8 h-8 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors close-btn">
+                    X
+                </div>
+                <h2 class="text-3xl font-bold text-center text-purple-900 mb-8">DICAS:</h2>
+                <p class="mb-4">
+                    Você pode blefar e atrapalhar as investigações dos outros jogadores, sugerindo cartas que estão com
+                    você mesmo.
+                </p>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">ANOTE TUDO SOBRE SUA INVESTIGAÇÃO.</h3>
+                <p class="mb-4">
+                    No seu bloco de notas você tem escrito todos os personagens e trabalho. À medida que for descobrindo
+                    quem NÃO está envolvido com o roubo, ou seja, que você viu a carta dele ou alguém tiver uma carta,
+                    você marca no bloco. No final, quando você não tiver marcado apenas um personagem, uma arma e um
+                    local do crime, esta será a solução do crime. Ao descobrir quem é a pessoa que foi roubada e seu
+                    trabalho roubado, faça sua acusação. MAS ATENÇÃO, cada jogador só poderá fazer uma acusação e apenas
+                    na sua vez de jogar.
+                </p>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">Atenção!</h3>
+                <p class="mb-4">
+                    Caso você seja um bom detetive, você pode descobrir quem é a personagem e seu trabalho roubado antes
+                    de eliminar todos os suspeitos no seu bloco de notas. Arrisque! Mas se errar você está fora! No
+                    momento da acusação você abre o envelope e olha as cartas, e NINGUÉM mais vê essas cartas. Se sua
+                    acusação estiver errada, você estará fora do jogo. Mas se ela estiver correta, você ganha o jogo!
+                </p>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">Peões que representam os suspeitos no
+                    tabuleiro, seguindo a sequência da tabela abaixo:</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li><span class="text-red-600 font-bold">andressa ojeda</span> - vermelho - departamento
+                        aeroespacial</li>
+                    <li><span class="text-orange-600 font-bold">hady lamar</span> - laranja - lab secreto</li>
+                    <li><span class="text-yellow-600 font-bold">grace hooper</span> - amarelo - lab de computação naval
+                    </li>
+                    <li><span class="text-green-600 font-bold">edith clarke</span> - verde - (nasa)</li>
+                    <li><span class="text-blue-600 font-bold">annie easley</span> - azul - estação de energia</li>
+                    <li><span class="text-purple-600 font-bold">jeroniza marchaukoski</span> - roxo - lab de
+                        biotecnologia</li>
+                </ul>
+                <p class="mb-4">
+                    A sequência de jogadores será dada pelo sorteio do número mais alto no dado. (do maior para o menor)
+                </p>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">Como andar com o seu peão?</h3>
+                <ol class="list-decimal list-inside mb-4 ml-4">
+                    <li class="mb-2">1 – De acordo com o valor do seu peão, você terá que sair de um dos locais.</li>
+                    <li class="mb-2">2 – Na mesma jogada você pode andar para frente, para trás e para os lados, menos
+                        voltar ao espaço de onde saiu. Atenção: Os peões não podem se movimentar na diagonal!</li>
+                    <li class="mb-2">3 – Se houver outro peão no caminho do seu, desvie usando espaços nas laterais.
+                        Dois peões não podem ocupar o mesmo espaço.</li>
+                    <li class="mb-2">4 – Quando chegar no local escolhido, você deve entrar, na mesma jogada, dar um
+                        palpite.</li>
+                </ol>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">Pontos do tabuleiro!</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>As setas azuis indicam as entradas dos locais.</li>
+                    <li>As setas vermelhas indicam as saídas</li>
+                    <li>As setas brancas indicam as passagens secretas, que permitem os jogadores irem à outra parte do
+                        tabuleiro: Biblioteca, laboratório secreto, sala de manutenção dos computadores e centro de
+                        pesquisa Lewis (nasa). (Cada jogador pode utilizar estas passagens apenas três vezes!)</li>
+                </ul>
+                <h3 class="text-xl font-bold text-center text-purple-900 mb-4">INVESTIGANDO O ROUBO.</h3>
+                <p class="mb-4">
+                    Estando em qualquer aposento do mapa você deve dar seu palpite, tentando adivinhar quem é a pessoa e
+                    seu trabalho roubado.
+                    Ao dar seu palpite sobre o roubo, o jogador que estiver à sua esquerda deve olhar as cartas e ver se
+                    tem alguma carta referente ao palpite. Se tiver, ele deve mostrar apenas uma das cartas que tiver
+                    (mesmo que tenha mais de uma). Anote no bloco de notas a carta mostrada. Isto significa que aquele
+                    personagem ou trabalho mostrado não estão envolvidos com o crime. Se o jogador à sua esquerda não
+                    tiver nenhuma carta, o primeiro jogador à esquerda que tiver alguma carta a mostra para você.
+                </p>
+                <p class="text-center font-bold text-lg">
+                    Atenção! Sempre que tiver alguma carta que prove a falsidade do crime você deverá mostrar!
+                    O jogador não pode sair de um aposento e voltar para o mesmo aposento em seguida.
+                </p>
+            </div>
+
+
+            <!-- Tela de Login (Inicialmente oculta) -->
+            <div id="loginForm"
+                class="relative bg-purple-300 p-8 pt-12 rounded-xl shadow-2xl w-full max-w-sm border-2 border-purple-400 mx-auto hidden">
+                <!-- Botão de fechar (X) -->
+                <div
+                    class="absolute top-4 right-4 text-purple-700 text-3xl font-bold cursor-pointer rounded-full bg-white p-1 leading-none w-8 h-8 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors close-btn">
+                    X
+                </div>
+
+                <h2 class="text-3xl font-bold text-center text-purple-900 mb-8">LOGIN</h2>
+
+                <div class="mb-6">
+                    <label for="usernameLogin" class="block text-purple-900 text-lg font-semibold mb-2">Usuário:</label>
+                    <input type="text" id="usernameLogin"
+                        class="w-full p-3 rounded-lg border-2 border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-shadow"
+                        placeholder="">
+                </div>
+
+                <div class="mb-8">
+                    <label for="passwordLogin" class="block text-purple-900 text-lg font-semibold mb-2">Senha:</label>
+                    <input type="password" id="passwordLogin"
+                        class="w-full p-3 rounded-lg border-2 border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-shadow"
+                        placeholder="">
+                </div>
+
+                <button
+                    class="w-full bg-white text-purple-700 font-bold py-3 rounded-lg shadow-md hover:bg-gray-100 hover:shadow-lg transition-all transform hover:scale-105">
+                    OK!
+                </button>
+            </div>
+
+            <!-- Tela de Cadastro (Inicialmente oculta) -->
+            <div id="registerForm"
+                class="relative bg-purple-300 p-8 pt-12 rounded-xl shadow-2xl w-full max-w-sm border-2 border-purple-400 hidden mx-auto">
+                <!-- Botão de fechar (X) -->
+                <div
+                    class="absolute top-4 right-4 text-purple-700 text-3xl font-bold cursor-pointer rounded-full bg-white p-1 leading-none w-8 h-8 flex items-center justify-center shadow-md hover:bg-gray-100 transition-colors close-btn">
+                    X
+                </div>
+
+                <h2 class="text-3xl font-bold text-center text-purple-900 mb-8">Cadastro</h2>
+
+                <div class="mb-6">
+                    <label for="usernameRegister"
+                        class="block text-purple-900 text-lg font-semibold mb-2">Usuário:</label>
+                    <input type="text" id="usernameRegister"
+                        class="w-full p-3 rounded-lg border-2 border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-shadow"
+                        placeholder="">
+                </div>
+
+                <div class="mb-6">
+                    <label for="emailRegister" class="block text-purple-900 text-lg font-semibold mb-2">E-mail:</label>
+                    <input type="email" id="emailRegister"
+                        class="w-full p-3 rounded-lg border-2 border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-shadow"
+                        placeholder="">
+                </div>
+
+                <div class="mb-8">
+                    <label for="passwordRegister"
+                        class="block text-purple-900 text-lg font-semibold mb-2">Senha:</label>
+                    <input type="password" id="passwordRegister"
+                        class="w-full p-3 rounded-lg border-2 border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 transition-shadow"
+                        placeholder="">
+                </div>
+
+                <button
+                    class="w-full bg-white text-purple-700 font-bold py-3 rounded-lg shadow-md hover:bg-gray-100 hover:shadow-lg transition-all transform hover:scale-105">
+                    OK!
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const gameContent = document.getElementById('gameContent'); // Elemento de conteúdo do jogo
+            const gameTips = document.getElementById('gameTips'); // Novo elemento de dicas/regras
+
+            const showLoginBtn = document.getElementById('showLoginBtn');
+            const showRegisterBtn = document.getElementById('showRegisterBtn');
+            // Os botões da sidebar de "Sobre o jogo"
+            const linkMotivacao = document.getElementById('linkMotivacao');
+            const linkComoJogar = document.getElementById('linkComoJogar');
+            const linkRegras = document.getElementById('linkRegras');
+
+            const closeButtons = document.querySelectorAll('.close-btn');
+
+            // Função para mostrar um painel e esconder os outros
+            function showPanel(panelToShow) {
+                // Esconde todos os painéis
+                loginForm.classList.add('hidden');
+                registerForm.classList.add('hidden');
+                gameContent.classList.add('hidden');
+                gameTips.classList.add('hidden');
+
+                // Mostra o painel desejado
+                panelToShow.classList.remove('hidden');
+            }
+
+            // Event listener para o botão "Login" na sidebar
+            if (showLoginBtn) {
+                showLoginBtn.addEventListener('click', (event) => {
+                    event.preventDefault(); // Evita o comportamento padrão do link
+                    showPanel(loginForm);
+                });
+            }
+
+            // Event listener para o botão "Cadastro" na sidebar
+            if (showRegisterBtn) {
+                showRegisterBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPanel(registerForm);
+                });
+            }
+
+            // Event listener para o link "Motivação" na sidebar
+            if (linkMotivacao) {
+                linkMotivacao.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPanel(gameContent); // Exibe o conteúdo principal do jogo/motivação
+                });
+            }
+
+            // Event listener para o link "Como Jogar" na sidebar
+            if (linkComoJogar) {
+                linkComoJogar.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPanel(gameTips); // Exibe a tela de dicas/regras
+                });
+            }
+
+            // Event listener para o link "Regras" na sidebar
+            if (linkRegras) {
+                linkRegras.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPanel(gameTips); // Exibe a tela de dicas/regras (pode ser a mesma de "Como Jogar" ou uma específica se houver mais conteúdo)
+                });
+            }
+
+            // Event listeners para os botões "X" (fechar)
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPanel(gameContent); // Retorna para o conteúdo principal do jogo ao fechar o formulário
+                });
+            });
+
+            // Inicialmente, mostra o conteúdo principal do jogo
+            showPanel(gameContent);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edith - Personagem</title>
+    <!-- Inclui o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        /* Cores e padrões para o fundo quadriculado */
+        .grid-background {
+            background-color: #FFFACD;
+            /* Cor de fundo creme */
+            background-image:
+                /* Linhas finas horizontais */
+                linear-gradient(to right, #E0E0E0 1px, transparent 1px),
+                /* Linhas fortes horizontais */
+                linear-gradient(to right, #C0C0C0 1px, transparent 1px),
+                /* Linhas finas verticais */
+                linear-gradient(to bottom, #E0E0E0 1px, transparent 1px),
+                /* Linhas fortes verticais */
+                linear-gradient(to bottom, #C0C0C0 1px, transparent 1px);
+            background-size:
+                10px 10px,
+                /* Tamanho da célula para linhas finas */
+                50px 50px,
+                /* Tamanho da célula para linhas fortes */
+                10px 10px,
+                50px 50px;
+            /* Offset para garantir que as linhas comecem na borda */
+            background-position: -1px -1px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex min-h-screen">
+    <div class="flex w-full">
+        <!-- Sidebar -->
+        <aside class="w-64 md:w-80 bg-purple-700 p-6 flex flex-col justify-between shadow-lg rounded-r-xl">
+            <div>
+                <!-- Ícone do Menu Hamburguer -->
+                <div
+                    class="text-white text-3xl mb-8 cursor-pointer p-2 rounded-md hover:bg-purple-600 transition-colors">
+                    &#9776; <!-- Ícone de hambúrguer Unicode -->
+                </div>
+
+                <!-- Navegação Principal (Links nesta página podem direcionar para index.html ou permanecer estáticos) -->
+                <nav>
+                    <ul>
+                        <!-- Categoria "Sobre o jogo" -->
+                        <li class="mb-4">
+                            <div class="text-white font-bold text-lg flex items-center mb-2">
+                                <span class="text-yellow-400 text-xl mr-2">&#9733;</span> Sobre o jogo
+                            </div>
+                            <ul class="ml-6 text-sm">
+                                <li class="mb-1">
+                                    <a href="index.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Motivação</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="index.html#comoJogar"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Como
+                                        Jogar</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="index.html#regras"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Regras</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Categoria "Personagens" -->
+                        <li class="mb-4">
+                            <div class="text-white font-bold text-lg flex items-center mb-2">
+                                <span class="text-yellow-400 text-xl mr-2">&#9733;</span> Personagens
+                            </div>
+                            <ul class="ml-6 text-sm">
+                                <li class="mb-1">
+                                    <a href="andressaojeda.html"
+                                        class="block text-white bg-purple-600 p-2 rounded-md transition-colors">Andressa
+                                        Ojeda</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="hedylamar.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Hedy
+                                        Lamar</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="grace.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Grace
+                                        Hooper</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="edith.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Edith
+                                        Clarke</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="annie.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Annie
+                                        Easley</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a href="jeroniza.html"
+                                        class="block text-gray-200 hover:text-white hover:bg-purple-600 p-2 rounded-md transition-colors">Jeroniza
+                                        Marchalewki</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Botões para Login/Cadastro (podem direcionar para index.html) -->
+            <div class="p-2">
+                <a href="index.html#login"
+                    class="w-full bg-white text-purple-700 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-100 mb-2 block text-center transition-all">
+                    Login
+                </a>
+                <a href="index.html#cadastro"
+                    class="w-full bg-white text-purple-700 font-bold py-2 px-4 rounded-md shadow-md hover:bg-gray-100 block text-center transition-all">
+                    Cadastro
+                </a>
+            </div>
+
+            <!-- Logo UFPR (placeholder) -->
+            <div class="mt-auto p-2">
+                <img src="https://placehold.co/120x50/8A2BE2/FFFFFF?text=UFPR" alt="Logo UFPR"
+                    class="w-full h-auto rounded-md object-contain">
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal com o fundo quadriculado para Andressa Ojeda -->
+        <main class="flex-1 grid-background p-6 rounded-l-xl flex flex-col items-center justify-center relative">
+            <div
+                class="bg-purple-300 p-8 rounded-xl shadow-2xl max-w-4xl w-full text-purple-900 border-2 border-purple-400 overflow-y-auto max-h-[90vh] mx-auto">
+                <!-- Seção para as duas imagens (ojeda1.jpg e ojeda2.jpg) -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+                    <img src="img/edith1.jpg" alt="Andressa Ojeda Imagem 1"
+                        class="w-48 h-48 object-cover rounded-lg shadow-md border-2 border-purple-400">
+                    <img src="img/edith2.jpg" alt="Andressa Ojeda Imagem 2"
+                        class="w-48 h-48 object-cover rounded-lg shadow-md border-2 border-purple-400">
+                </div>
+
+                <div class="text-justify leading-relaxed">
+                    <h3 class="text-2xl font-bold text-center text-purple-900 mb-4">EDITH CLARCK
+
+                    </h3>
+                    <p class="mb-4">
+                        Edith Clarke
+                        formou-se Bacharel em Matemática e Astronomia. Trabalhou como professora de Matemática e Física
+                        antes de ingressar no curso de Engenharia Civil. Além disso, entrou para o MIT, tornando-se a
+                        primeira mulher graduada em Engenharia Elétrica pela instituição, se tornando a primeira
+                        engenheira elétrica do mundo.
+
+                        Em 1948, foi a primeira mulher a se tornar Fellow do AIEE. Em 1954, foi homenageada pela
+                        Sociedade de Mulheres Engenheiras por suas contribuições à área.
+
+                         As linhas de transmissão de energia elétrica de longa distância possuem propriedades elétricas
+                        complexas, como indutância e capacidade, que tornam os cálculos para prever seu comportamento
+                        extremamente difíceis e demorados. Antigamente, resolver as equações diferenciais lineares
+                        hiperbólicas associadas a esses sistemas era um processo manual, lento e suscetível a erros, o
+                        que dificultava o projeto de sistemas de energia mais eficientes e estáveis. Assim, foi
+                        inventado um dispositivo gráfico que resolvia essas complexas equações de forma rápida e
+                        precisa, denominada calculadora gráfica. Essencialmente, uma régua de cálculo especializada que
+                        simplificava os cálculos de impedância, voltagem e corrente em linhas de transmissão. Ele
+                        permitiu que os engenheiros realizassem em minutos cálculos que antes levavam dias. 
+
+
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
